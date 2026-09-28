@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdallah Elbohoty — Performance Marketing Portfolio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #1a1a2e; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white; padding: 70px 40px; text-align: center;
+  }
+  .hero-avatar {
+    width: 100px; height: 100px; border-radius: 50%;
+    background: linear-gradient(135deg, #e94560, #0f3460);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; font-weight: 700; margin: 0 auto 20px;
+    border: 4px solid rgba(255,255,255,0.2);
+  }
+  .hero h1 { font-size: 2.4rem; font-weight: 700; margin-bottom: 8px; }
+  .hero .title { font-size: 1.1rem; color: #a8b2d8; margin-bottom: 20px; }
+  .hero .badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .badge {
+    background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; color: #ccd6f6;
+  }
+  .badge.highlight { background: #e94560; border-color: #e94560; color: white; }
+  .contact-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .contact-item { display: flex; align-items: center; gap: 6px; color: #a8b2d8; font-size: 0.9rem; }
+  .contact-item a { color: #64ffda; text-decoration: none; }
+  .contact-item a:hover { text-decoration: underline; }
+
+  /* SECTIONS */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 60px 0; }
+  section:nth-child(even) { background: white; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: #e94560; margin-bottom: 8px;
+  }
+  .section-title { font-size: 1.9rem; font-weight: 700; color: #1a1a2e; margin-bottom: 40px; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+  .stat-card {
+    background: linear-gradient(135deg, #1a1a2e, #0f3460);
+    color: white; border-radius: 16px; padding: 30px 20px; text-align: center;
+  }
+  .stat-number { font-size: 2.4rem; font-weight: 800; color: #64ffda; }
+  .stat-label { font-size: 0.85rem; color: #a8b2d8; margin-top: 6px; line-height: 1.4; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .skill-card {
+    background: white; border-radius: 16px; padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 4px solid #e94560;
+  }
+  .skill-card h3 { font-size: 1rem; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
+  .skill-tag {
+    display: inline-block; background: #f0f4ff; color: #0f3460;
+    padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;
+    margin: 4px; font-weight: 500;
+  }
+  .skill-tag.primary { background: #e94560; color: white; }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, #e94560, #0f3460);
+  }
+  .exp-card {
+    background: white; border-radius: 16px; padding: 28px 28px 28px 60px;
+    margin-bottom: 24px; position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .exp-dot {
+    position: absolute; left: 11px; top: 32px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #e94560; border: 3px solid white;
+    box-shadow: 0 0 0 3px #e94560;
+  }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+  .exp-role { font-size: 1.1rem; font-weight: 700; color: #1a1a2e; }
+  .exp-period { font-size: 0.82rem; color: #e94560; font-weight: 600; background: #fff0f3; padding: 4px 10px; border-radius: 20px; }
+  .exp-company { font-size: 0.9rem; color: #555; margin-bottom: 14px; }
+  .exp-vendor { font-size: 0.8rem; color: #888; font-style: italic; margin-bottom: 14px; }
+  .exp-card ul { list-style: none; }
+  .exp-card ul li { padding: 5px 0 5px 20px; position: relative; font-size: 0.9rem; color: #444; line-height: 1.5; }
+  .exp-card ul li::before { content: '▸'; position: absolute; left: 0; color: #e94560; }
+  .achievement { background: #f0fff8; border-left: 3px solid #00c896; padding: 8px 14px; border-radius: 0 8px 8px 0; margin: 10px 0; font-size: 0.88rem; color: #1a1a2e; font-weight: 600; }
+
+  /* MARKETS */
+  .markets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+  .market-card {
+    background: white; border-radius: 16px; padding: 24px; text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .market-flag { font-size: 2rem; margin-bottom: 10px; }
+  .market-name { font-weight: 700; color: #1a1a2e; margin-bottom: 4px; }
+  .market-detail { font-size: 0.82rem; color: #666; }
+
+  /* CERTS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .cert-card {
+    background: white; border-radius: 12px; padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+    display: flex; align-items: center; gap: 14px;
+  }
+  .cert-icon { font-size: 1.8rem; }
+  .cert-name { font-weight: 700; font-size: 0.9rem; color: #1a1a2e; }
+  .cert-year { font-size: 0.78rem; color: #888; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, #e94560, #0f3460);
+    color: white; text-align: center; padding: 70px 40px;
+  }
+  .cta-section h2 { font-size: 2rem; margin-bottom: 12px; }
+  .cta-section p { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1rem; }
+  .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 14px 32px; border-radius: 30px; font-weight: 700;
+    font-size: 0.95rem; text-decoration: none; transition: transform 0.2s;
+    display: inline-block;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-white { background: white; color: #e94560; }
+  .btn-outline { background: transparent; color: white; border: 2px solid white; }
+
+  /* FOOTER */
+  footer { background: #1a1a2e; color: #a8b2d8; text-align: center; padding: 30px; font-size: 0.85rem; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.7rem; }
+    .timeline::before { display: none; }
+    .exp-card { padding-left: 20px; }
+    .exp-dot { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-avatar">AE</div>
+  <h1>Abdallah Elbohoty</h1>
+  <p class="title">Senior Performance Marketing Specialist</p>
+  <div class="badges">
+    <span class="badge highlight">🇪🇺 EU Citizen · No Visa Required</span>
+    <span class="badge">📍 Lisbon, Portugal</span>
+    <span class="badge">🌐 Remote-Ready</span>
+    <span class="badge">🗣️ Arabic · English</span>
+  </div>
+  <div class="contact-row">
+    <span class="contact-item">📞 +351 934 421 604</span>
+    <span class="contact-item">✉️ <a href="mailto:abdallah.m.elbohoty@gmail.com">abdallah.m.elbohoty@gmail.com</a></span>
+    <span class="contact-item">🔗 <a href="https://www.linkedin.com/in/abdallah-el-bohoty/" target="_blank">LinkedIn Profile</a></span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section style="background:#f4f6f9;">
+  <div class="container">
+    <div class="section-label">By The Numbers</div>
+    <div class="section-title">Career Highlights</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Years Performance Marketing Experience</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">30%</div>
+        <div class="stat-label">Average ROI Improvement (MENA Advertisers)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">35%</div>
+        <div class="stat-label">CPA Reduction via Bid Strategy & A/B Testing</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">$60K</div>
+        <div class="stat-label">Max Monthly Ad Budget Managed (per account)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Major Platforms: Google · TikTok · Meta</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Active Platform Certifications (2023–2024)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section style="background:white;">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <div class="section-title">Core Skills & Platforms</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>🎯 Paid Media Platforms</h3>
+        <span class="skill-tag primary">Google Ads</span>
+        <span class="skill-tag primary">TikTok Ads</span>
+        <span class="skill-tag primary">Meta Ads</span>
+        <span class="skill-tag">Performance Max</span>
+        <span class="skill-tag">TikTok Shop</span>
+        <span class="skill-tag">Google Shopping</span>
+        <span class="skill-tag">YouTube Ads</span>
+        <span class="skill-tag">Display Ads</span>
+      </div>
+      <div class="skill-card">
+        <h3>📊 Analytics & Technical Stack</h3>
+        <span class="skill-tag primary">Google Analytics 4</span>
+        <span class="skill-tag primary">Google Tag Manager</span>
+        <span class="skill-tag">Google Merchant Center</span>
+        <span class="skill-tag">Salesforce CRM</span>
+        <span class="skill-tag">Shopify</span>
+        <span class="skill-tag">Conversion Tracking</span>
+        <span class="skill-tag">Pixel Setup</span>
+        <span class="skill-tag">SEO & Search Console</span>
+      </div>
+      <div class="skill-card">
+        <h3>📈 Strategy & Optimisation</h3>
+        <span class="skill-tag primary">ROAS Optimisation</span>
+        <span class="skill-tag primary">CPA Reduction</span>
+        <span class="skill-tag">A/B Testing</span>
+        <span class="skill-tag">Audience Segmentation</span>
+        <span class="skill-tag">Bid Strategy</span>
+        <span class="skill-tag">Full-Funnel Strategy</span>
+        <span class="skill-tag">Creative Testing</span>
+        <span class="skill-tag">CRO</span>
+      </div>
+      <div class="skill-card">
+        <h3>🤝 Client Success & Leadership</h3>
+        <span class="skill-tag primary">Account Portfolio Management</span>
+        <span class="skill-tag primary">C-Level Consulting</span>
+        <span class="skill-tag">Churn Mitigation</span>
+        <span class="skill-tag">QBRs</span>
+        <span class="skill-tag">Team Management</span>
+        <span class="skill-tag">B2B Growth Consulting</span>
+        <span class="skill-tag">SLA Compliance</span>
+        <span class="skill-tag">Stakeholder Management</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section style="background:#f4f6f9;">
+  <div class="container">
+    <div class="section-label">Career History</div>
+    <div class="section-title">Work Experience</div>
+    <div class="timeline">
+
+      <div class="exp-card">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Senior Digital Marketing Consultant & Customer Success Specialist</span>
+          <span class="exp-period">Oct 2023 – Present</span>
+        </div>
+        <div class="exp-company">Genpact · Lisbon, Portugal</div>
+        <div class="exp-vendor">Vendor programme supporting TikTok & Google Ads enterprise operations — MENA region</div>
+        <div class="achievement">🏆 Improved average client ROI by 30% across MENA enterprise advertiser portfolio</div>
+        <ul>
+          <li>Consult high-value MENA-region enterprise advertisers on TikTok Ads and Google Ads strategy, delivering data-backed optimisations</li>
+          <li>Serve as primary strategic liaison between regional advertisers and global product teams, resolving complex ad infrastructure issues and C-level escalations</li>
+          <li>Proactively identify underperforming accounts through metric analysis, building intervention plans that mitigate churn and stabilise recurring revenue</li>
+          <li>Onboard and consult clients on advanced bidding strategies, Performance Max, and platform updates</li>
+          <li>Manage multi-market advertiser relationships across MENA, Turkey, and Africa</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Team Manager — TikTok Ad Operations & Policy</span>
+          <span class="exp-period">Jun 2023 – Oct 2023</span>
+        </div>
+        <div class="exp-company">Foundever · Lisbon, Portugal</div>
+        <div class="exp-vendor">Vendor programme supporting TikTok's ad operations and policy enforcement</div>
+        <ul>
+          <li>Managed and led a content moderation team for TikTok Ads, partnering directly with TikTok's corporate team in weekly calibration sessions</li>
+          <li>Drove team performance through individual development plans, daily KPI huddles, and monthly reviews ensuring strict SLA compliance</li>
+          <li>Designed individual development plans and provided continuous technical feedback to team members</li>
+        </ul>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-dot"></div>
+        <div class="exp-header">
+          <span class="exp-role">Google Ads Consultant & Performance Marketing Specialist</span>
+          <span class="exp-period">Jun 2019 – Jun 2023</span>
+        </div>
+        <div class="exp-company">Teleperformance · Lisbon, Portugal</div>
+        <div class="exp-vendor">Vendor programme supporting Google Ads client operations across European and international markets</div>
+        <div class="achievement">🏆 Improved average client ROI by 25% · Reduced CPA by 35% · Managed $10K–$60K/month budgets</div>
+        <ul>
+          <li>Managed and optimised Google Ads campaigns across a diverse client portfolio spanning multiple industries</li>
+          <li>Managed e-commerce accounts with monthly budgets of $10,000–$60,000 USD, consistently delivering above-target ROAS</li>
+          <li>Owned end-to-end technical onboarding integrating Google Ads, GA4, Tag Manager, Merchant Center, and Google My Business</li>
+          <li>Built trusted relationships with C-level decision-makers and marketing directors as strategic advisor</li>
+          <li>Designed and delivered product training sessions for agency partners across the portfolio</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MARKETS -->
+<section style="background:white;">
+  <div class="container">
+    <div class="section-label">Geographic Reach</div>
+    <div class="section-title">Markets Covered</div>
+    <div class="markets-grid">
+      <div class="market-card">
+        <div class="market-flag">🌍</div>
+        <div class="market-name">MENA Region</div>
+        <div class="market-detail">Middle East & North Africa — primary market, Google & TikTok Ads</div>
+      </div>
+      <div class="market-card">
+        <div class="market-flag">🇹🇷</div>
+        <div class="market-name">Turkey</div>
+        <div class="market-detail">E-commerce campaigns, Meta & TikTok Ads</div>
+      </div>
+      <div class="market-card">
+        <div class="market-flag">🌍</div>
+        <div class="market-name">Africa</div>
+        <div class="market-detail">Multi-platform campaigns across African markets</div>
+      </div>
+      <div class="market-card">
+        <div class="market-flag">🇬🇧</div>
+        <div class="market-name">United Kingdom</div>
+        <div class="market-detail">TikTok Shop campaigns, e-commerce focus</div>
+      </div>
+      <div class="market-card">
+        <div class="market-flag">🌐</div>
+        <div class="market-name">EMEA</div>
+        <div class="market-detail">Broad European, Middle East & Africa coverage</div>
+      </div>
+      <div class="market-card">
+        <div class="market-flag">🇵🇹</div>
+        <div class="market-name">Portugal / EU</div>
+        <div class="market-detail">Based in Lisbon · EU Citizen · No visa required</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section style="background:#f4f6f9;">
+  <div class="container">
+    <div class="section-label">Qualifications</div>
+    <div class="section-title">Education & Certifications</div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <div class="cert-name">Diploma in Digital Marketing</div>
+          <div class="cert-year">Digital Marketing Institute · 2023</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <div class="cert-name">Bachelor in Business Administration</div>
+          <div class="cert-year">Higher Institute of Management Sciences · 2017</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🟦</div>
+        <div>
+          <div class="cert-name">Google Ads Search Certified</div>
+          <div class="cert-year">Google · 2024</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div>
+          <div class="cert-name">Google Analytics GA4 Certified</div>
+          <div class="cert-year">Google · 2024</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔵</div>
+        <div>
+          <div class="cert-name">Meta Ads Certified</div>
+          <div class="cert-year">Meta Blueprint · 2023</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🎵</div>
+        <div>
+          <div class="cert-name">TikTok Academy Certified</div>
+          <div class="cert-year">TikTok · 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Open to New Opportunities</h2>
+  <p>Senior Performance Marketing roles · Remote or Lisbon-based · 45,000+ EUR/year · Available immediately</p>
+  <div class="cta-buttons">
+    <a href="mailto:abdallah.m.elbohoty@gmail.com" class="btn btn-white">✉️ Send Email</a>
+    <a href="https://www.linkedin.com/in/abdallah-el-bohoty/" target="_blank" class="btn btn-outline">🔗 View LinkedIn</a>
+  </div>
+</div>
+
+<footer>
+  <p>Abdallah Elbohoty · Senior Performance Marketing Specialist · Lisbon, Portugal · EU Citizen</p>
+  <p style="margin-top:8px; color:#555;">abdallah.m.elbohoty@gmail.com · +351 934 421 604</p>
+</footer>
+
+</body>
+</html>
